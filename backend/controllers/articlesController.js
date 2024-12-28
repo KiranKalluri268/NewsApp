@@ -3,8 +3,8 @@ const Article = require("../models/Article");
 // Create a new article
 const createArticle = async (req, res) => {
   try {
-    const { heading, image, description, date, time } = req.body;
-    const newArticle = new Article({ heading, image, description, date, time });
+    const { heading, image, description, link } = req.body;
+    const newArticle = new Article({ heading, image, description, link });
     await newArticle.save();
     res.status(201).json({ message: "Article created successfully", article: newArticle });
   } catch (error) {

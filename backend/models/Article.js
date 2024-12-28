@@ -15,14 +15,9 @@ const articleSchema = new mongoose.Schema({
     required: true,
     trim: true,
   },
-  date: {
-    type: Date,
-    required: true,
-    default: Date.now, // Optional: Automatically sets the current date if not provided
-  },
-  time: {
+  link: {
     type: String,
-    required: true,
+    required: false,
   },
 });
 
