@@ -4,10 +4,12 @@ import Navbar from './components/Navbar';
 
 function App() {
   return (
-    <>
-      <Navbar/>
-      <News/>
-    </>
+    <div className="App">
+      <Navbar />
+      <div className="News-container">
+        <News />
+      </div>
+    </div>
   );
 }
 

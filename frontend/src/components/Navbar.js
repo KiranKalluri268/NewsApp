@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
-        <a className="navbar-brand" href="#">Latest News</a>
+        <a className="navbar-brand" href="vyj">Latest News</a>
         <button
           className="navbar-toggler"
           type="button"
@@ -35,19 +35,19 @@ const Navbar = () => {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="test">
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
+                <a className="nav-link" href="test">
                   Link
                 </a>
               </li>
               <li className="nav-item dropdown">
                 <a
                   className="nav-link dropdown-toggle"
-                  href="#"
+                  href="test"
                   role="button"
                   data-bs-toggle="dropdown"
                   aria-expanded="false"
@@ -56,12 +56,12 @@ const Navbar = () => {
                 </a>
                 <ul className="dropdown-menu dropdown-menu-dark">
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="test">
                       Action
                     </a>
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="test">
                       Another action
                     </a>
                   </li>
@@ -69,7 +69,7 @@ const Navbar = () => {
                     <hr className="dropdown-divider" />
                   </li>
                   <li>
-                    <a className="dropdown-item" href="#">
+                    <a className="dropdown-item" href="test">
                       Something else here
                     </a>
                   </li>
