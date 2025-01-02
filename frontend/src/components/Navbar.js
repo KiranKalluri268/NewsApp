@@ -4,7 +4,7 @@ const Navbar = () => {
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
-        <a className="navbar-brand" href="vyj">Latest News</a>
+        <a className="navbar-brand" href="test">Latest News</a>
         <button
           className="navbar-toggler"
           type="button"
@@ -23,7 +23,7 @@ const Navbar = () => {
         >
           <div className="offcanvas-header">
             <h5 className="offcanvas-title" id="offcanvasDarkNavbarLabel">
-              Dark Offcanvas
+              News Application
             </h5>
             <button
               type="button"
@@ -35,7 +35,7 @@ const Navbar = () => {
           <div className="offcanvas-body">
             <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="test">
+                <a className="nav-link active" aria-current="page" href="/">
                   Home
                 </a>
               </li>

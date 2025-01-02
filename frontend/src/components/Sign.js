@@ -1,87 +1,118 @@
 import React, { useState } from 'react';
+import axios from "axios";
+import '../sign.css';
 
-const Sign = ({ onSwitchToNews }) => {
-  const [isLoginMode, setIsLoginMode] = useState(true); // Toggles between login and signup
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [confirmPassword, setConfirmPassword] = useState('');
+const SignIn = ({ setUser }) => {
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (isLoginMode) {
-      // Login logic here
-      console.log('Logging in with:', { email, password });
-    } else {
-      // Signup logic here
-      if (password !== confirmPassword) {
-        alert('Passwords do not match');
-        return;
+  const handleRegisterSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/register', {
+        email,
+        name,
+        password,
+      });
+
+      if (response && response.data) {
+        alert('Registration successful! Please log in.');
+        setName("");
+        setEmail("");
+        setPassword("");
       }
-      console.log('Signing up with:', { email, password });
+    } catch (error) {
+      console.error('Error during registration:', error);
+      alert(error.response?.data?.message || 'Registration failed');
+    }
+  };
+
+  const handleLoginSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const response = await axios.post('http://localhost:5000/api/auth/login', {
+        email,
+        password,
+      });
+
+      if (response && response.data) {
+        const { token, userName } = response.data;
+        localStorage.setItem('authToken', token);
+        alert(`Welcome, ${userName}`);
+        setUser(userName); // Update the user state in App.js
+      }
+    } catch (error) {
+      console.error('Error during login:', error);
+      setError(error.response?.data?.message || "Login failed. Please try again.");
     }
   };
 
   return (
-    <div className="container mt-5">
-      <h2>{isLoginMode ? 'Login' : 'Register'}</h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="email" className="form-label">
-            Email address
-          </label>
+    <>
+    <header className='Sign-header'><h1>NEWS APPLICATION</h1></header>
+    <div className="main">
+      <input type="checkbox" id="chk" aria-hidden="true" />
+
+      <div className="signup">
+        <form onSubmit={handleRegisterSubmit}>
+          <label htmlFor="chk" aria-hidden="true">Register</label>
           <input
+            className='Sign-input'
+            type="text"
+            placeholder="Enter your name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            required
+          />
+          <input
+            className='Sign-input'
             type="email"
-            className="form-control"
-            id="email"
+            placeholder="Enter your email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="password" className="form-label">
-            Password
-          </label>
           <input
+            className='Sign-input'
             type="password"
-            className="form-control"
-            id="password"
+            placeholder="Enter your password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </div>
-        {!isLoginMode && (
-          <div className="mb-3">
-            <label htmlFor="confirmPassword" className="form-label">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              className="form-control"
-              id="confirmPassword"
-              value={confirmPassword}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              required
-            />
-          </div>
-        )}
-        <button type="submit" className="btn btn-primary">
-          {isLoginMode ? 'Login' : 'Register'}
-        </button>
-        <button
-          type="button"
-          className="btn btn-link mt-3"
-          onClick={() => setIsLoginMode(!isLoginMode)}
-        >
-          {isLoginMode ? 'Switch to Register' : 'Switch to Login'}
-        </button>
-        <button className="btn btn-link mt-3" onClick={onSwitchToNews}>
-          Back to News
-        </button>
-      </form>
+          <button className='Sign-button'>Register</button>
+        </form>
+      </div>
+
+      <div className="login">
+        <form onSubmit={handleLoginSubmit}>
+          <label htmlFor="chk" aria-hidden="true">Login</label>
+          <input
+            className='Sign-input'
+            type="email"
+            placeholder="Enter your email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+          <input
+            className='Sign-input'
+            type="password"
+            placeholder="Enter your password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+          {error && <p style={{ color: 'red', margin: '10px 0' }}>{error}</p>}
+          <button className='Sign-button'>Login</button>
+        </form>
+      </div>
     </div>
+    </>
   );
 };
 
-export default Sign;
+export default SignIn;
