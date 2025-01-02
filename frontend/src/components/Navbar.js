@@ -1,6 +1,10 @@
 import React from 'react';
 
 const Navbar = () => {
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    window.location.href = '/';
+  };
   return (
     <nav className="navbar navbar-dark bg-dark fixed-top">
       <div className="container-fluid">
@@ -40,9 +44,7 @@ const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="test">
-                  Link
-                </a>
+                <button type='button' className='Logout-button' onClick={handleLogout}>Logout</button>
               </li>
               <li className="nav-item dropdown">
                 <a
