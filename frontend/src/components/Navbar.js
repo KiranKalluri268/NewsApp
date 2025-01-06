@@ -6,7 +6,12 @@ const Navbar = () => {
     window.location.href = '/';
   };
   return (
-    <nav className="navbar navbar-dark bg-dark fixed-top">
+    <nav
+      className="navbar navbar-dark fixed-top"
+      style={{
+        background: 'linear-gradient(to bottom, #0f0c29, #302b63, #24243e)',
+      }}
+    >
       <div className="container-fluid">
         <a className="navbar-brand" href="test">Latest News</a>
         <button
@@ -20,13 +25,16 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="offcanvas offcanvas-end text-bg-dark"
+          className="offcanvas offcanvas-end "
           tabIndex="-1"
           id="offcanvasDarkNavbar"
           aria-labelledby="offcanvasDarkNavbarLabel"
+          style={{
+            background: 'linear-gradient(to bottom, #0f0c29, #302b63, #24243e)',
+          }}
         >
           <div className="offcanvas-header">
-            <h5 className="offcanvas-title" id="offcanvasDarkNavbarLabel">
+            <h5 className="offcanvas-title" style={{color: 'white'}} id="offcanvasDarkNavbarLabel">
               News Application
             </h5>
             <button
@@ -44,38 +52,7 @@ const Navbar = () => {
                 </a>
               </li>
               <li className="nav-item">
-                <button type='button' className='Logout-button' onClick={handleLogout}>Logout</button>
-              </li>
-              <li className="nav-item dropdown">
-                <a
-                  className="nav-link dropdown-toggle"
-                  href="test"
-                  role="button"
-                  data-bs-toggle="dropdown"
-                  aria-expanded="false"
-                >
-                  Dropdown
-                </a>
-                <ul className="dropdown-menu dropdown-menu-dark">
-                  <li>
-                    <a className="dropdown-item" href="test">
-                      Action
-                    </a>
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="test">
-                      Another action
-                    </a>
-                  </li>
-                  <li>
-                    <hr className="dropdown-divider" />
-                  </li>
-                  <li>
-                    <a className="dropdown-item" href="test">
-                      Something else here
-                    </a>
-                  </li>
-                </ul>
+                <button type='button' className='Logout-button' style={{color: 'white'}} onClick={handleLogout}>Logout</button>
               </li>
             </ul>
             <form className="d-flex mt-3" role="search">
